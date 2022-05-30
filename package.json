@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/pandareen/npm-elastic/issues"
   },
-  "homepage": "https://github.com/pandareen/npm-elastic#readme"
+  "homepage": "https://github.com/pandareen/npm-elastic#readme",
+  "dependencies": {
+    "@elastic/elasticsearch": "^8.1.0",
+    "node-fetch": "^2.6.7"
+  }
 }
