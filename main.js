@@ -29,6 +29,7 @@ async function run () {
       index: ES_INDEX_NAME,
       mappings: {
         properties: {
+          id: { type: 'integer' },
           albumId: { type: 'integer' },
           title: { type: 'text' },
           url: { type: 'text' },
