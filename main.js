@@ -22,6 +22,7 @@ async function run () {
     operations: {
       mappings: {
         properties: {
+          id: { type: 'integer' },
           albumId: { type: 'integer' },
           title: { type: 'text' },
           url: { type: 'url.full' },
