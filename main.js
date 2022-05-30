@@ -17,20 +17,28 @@ const client = new Client({
 
 async function run () {
   // Let's start by indexing some data
-  await client.indices.create({
-    index: ES_INDEX_NAME,
-    operations: {
+
+  const exists = await client.indices.exists({index: ES_INDEX_NAME})
+
+  console.log(`index ${ES_INDEX_NAME} exists: ${exists}`)
+
+  if(!exists) {
+    console.log(`creating index ${ES_INDEX_NAME}`);
+
+    await client.indices.create({
+      index: ES_INDEX_NAME,
       mappings: {
         properties: {
-          id: { type: 'integer' },
           albumId: { type: 'integer' },
           title: { type: 'text' },
-          url: { type: 'url.full' },
-          thumbnailUrl: { type: 'url.full' }
+          url: { type: 'text' },
+          thumbnailUrl: { type: 'text' }
         }
       }
-    }
-  }, { ignore: [400] })
+    }, { ignore: [] })
+
+  }
+
 
   const jsonz = await fetch('https://jsonplaceholder.typicode.com/photos/')
       .then(response => response.json())
