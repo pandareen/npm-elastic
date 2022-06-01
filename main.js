@@ -24,17 +24,17 @@ async function run () {
 
   if(!exists) {
     console.log(`creating index ${ES_INDEX_NAME}`);
-
+    const props = {
+      id: { type: 'integer' },
+      albumId: { type: 'integer' },
+      title: { type: 'text' },
+      url: { type: 'text' },
+      thumbnailUrl: { type: 'text' }
+    }
     await client.indices.create({
       index: ES_INDEX_NAME,
       mappings: {
-        properties: {
-          id: { type: 'integer' },
-          albumId: { type: 'integer' },
-          title: { type: 'text' },
-          url: { type: 'text' },
-          thumbnailUrl: { type: 'text' }
-        }
+        properties: props
       }
     }, { ignore: [] })
 
